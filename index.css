@@ -8,7 +8,15 @@ h1{
 }
 
   .cliked {
-    color:7f8cd;
+    color:7f8c8d;
   }
 
+  .form,
+  .greetings {
+    display: none;
+  }
+
+.showing {
+  display: block;
+}
 

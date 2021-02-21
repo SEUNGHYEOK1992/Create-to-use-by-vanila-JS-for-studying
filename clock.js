@@ -7,7 +7,7 @@ function getTime(){ //init- -> getTime으로 변경 무언가를 만들 때에�
     const hours = date.getHours();
     const seconds = date.getSeconds();
     clockTitle.innerText =`${hours < 10 ? `0${hours}` : hours}:${
-        minutes <10 ? `$0{minutes}` : minutes}:${
+        minutes <10 ? `0${minutes}` : minutes}:${
         seconds <10 ? `0${seconds}` : seconds
     }`;
 }
