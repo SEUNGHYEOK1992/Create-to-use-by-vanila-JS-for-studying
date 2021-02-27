@@ -4,7 +4,25 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = 'toDos';
 
-const toDos = [];//여러가지 할일을 정해서 추가해야 되기 때문에 array를 추가
+function filterFn(toDo){
+    return toDo.id === 1
+}
+
+
+let toDos = [];//여러가지 할일을 정해서 추가해야 되기 때문에 array를 추가
+
+function deleteToDo(event){
+    console.log(event.target.parentNode);
+    const btn = event.target;
+    const li = btn.parentNode;
+    toDoList.removeChild(li);
+    const cleanToDos = toDos.filter(function(toDo){
+        console.log(toDo.id,li.id);
+        return toDo.id !== li.id;
+    });
+    toDos = cleanToDos//cleanTodos와 filter가 하는것은 filterFn이 체크가 된 아이템들의 array를 주는것이다.
+    saveToDos();
+}
 
 function saveToDos() {//toDos 를 가져와서 로컬에 저장하는 역할
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));//JSON.srtingify는 object를 string으로 바꿔준다.
@@ -17,6 +35,7 @@ function paintToDo(text){
     const span = document.createElement("span");
     const newId = toDos.length +1;
     delBtn.innerHTML = "❌";   
+    delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
     li.appendChild(span);
     li.appendChild(delBtn);
